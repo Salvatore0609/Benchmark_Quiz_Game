@@ -1,19 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+
 body{
     background-image: url(./assets/bg.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; 
     background-attachment: fixed;
-    padding: 0 0 0 5%;
+    /* padding: 0% 10%; */
 }
+
+.container{
+    width: 50%;
+    margin: auto;
+}
+
+
 
 .h1Font{
     font-size: 60px;
     font-family: Outfit;
     color: white;
+    line-height: 65%;
 }
+
 
 .button{
     background-color: #00FFFF;
@@ -21,15 +31,19 @@ body{
     font-family: inter;
 }
 
-.answerButtonColor{
-    /* sfumatura con questi due colori :#D20094 , #900080 */
-}
+/* .answerButtonColor{
+    /* sfumatura con questi due colori :#D20094 , #900080
+} */
 
 .h3Color{
     color: #D20094;
     font-size: 25px;
     font-weight: bold;
     font-family: inter;
+}
+
+strong{
+    font-weight: 500;
 }
 
 p, ul{
@@ -62,15 +76,17 @@ main h1{
 
 p{
     margin-top: 1%;
+    max-width: 500px;
 }
 
 ul{
     margin-top: 3%;
-    margin-left: 5%;
+    margin-left: 2%;
 }
 ul li{
     list-style-type:disc;
     color: white;
+    margin-bottom: 1%;
 }
 
 
@@ -110,6 +126,7 @@ input:checked::after {
     transform: rotate(45deg);
 }
 span{
+    margin-left: 1%;
     display: inline-block;
     vertical-align: middle;
 }
@@ -123,5 +140,51 @@ button{
     border: none;
     padding: 1em 3em; 
     font-weight: bold;
-    margin-left: 40%;
+    margin-left: 19%;
+    cursor: pointer;
+
+  
+}
+
+button:hover{
+    -webkit-box-shadow:0px 0px 27px 6px rgba(0,255,255,0.9);
+    -moz-box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+    box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+}
+
+/* PAGINA 04 RESULTS */
+
+/* main{
+    text-align: center;
+} */
+
+.containerResults{
+    /* padding: 20%; */
+    text-align: center;
+    border: 2px solid red;
+
+}
+
+main div{
+    width: 77%;
+    margin: 0 auto;
+    border: 2px solid red;
+    box-sizing: border-box;
+    
+}
+
+h2{
+    font-size: 45px;
+    font-weight: 600;
+    font-family: Outfit;
+    color: white;
+    line-height: 65%;
+    padding-top: 8%;
+}
+
+.results{
+    padding: 3% 0%;
+    line-height: 120%;
+    font-size: 18px;
+
 }
