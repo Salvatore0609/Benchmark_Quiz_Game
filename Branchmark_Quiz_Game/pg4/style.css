@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+
+body{
+    background-image: url(../assets/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    margin: auto;
+}
+
+.h1Font{
+    font-size: 60px;
+    font-family: Outfit;
+    color: white;
+    line-height: 65%;
+}
+
+
+.button{
+    background-color: #00FFFF;
+    font-size: 16px;
+    font-family: inter;
+}
+
+/* .answerButtonColor{
+    /* sfumatura con questi due colori :#D20094 , #900080
+} */
+
+.h3Color{
+    color: #D20094;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: inter;
+}
+
+strong{
+    font-weight: 500;
+}
+
+p, ul{
+    color: white;
+    font-family: inter;
+    font-weight: 200;
+}
+
+footer span{
+    color: white;
+    font-family: inter;
+    font-weight: 500;
+}
+/* header */
+
+/* PAGINA 04 RESULTS */
+
+/* main{
+    text-align: center;
+} */
+
+.containerResults{
+    width: 1200px;
+    text-align: center;
+    position: relative;
+
+}
+
+main div{
+    width: 50%; 
+    margin: 0 auto;
+    box-sizing: border-box;
+    
+}
+
+h2{
+    font-size: 45px;
+    font-weight: 600;
+    font-family: Outfit;
+    color: white;
+    line-height: 65%;
+    padding-top: 8%;
+}
+
+.imgStar {
+    background-image: url(../assets/star.svg);
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+#containerStar{
+    /* display: inline-block;*/
+    text-align: center;
+    width: 100%;
+    
+} 
+
+.results{
+    padding: 3% 0%;
+    line-height: 120%;
+    font-size: 18px;
+
+}
+
+/* footer */
+footer {
+    text-align: center;
+}
+
+form input {
+    padding: 1em;
+    width: 45%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #D20094;
+}
+
+button{
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    padding: 1em 3em; 
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 3em;
+
+}
+
+button:hover{
+    -webkit-box-shadow:0px 0px 27px 6px rgba(0,255,255,0.9);
+    -moz-box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+    box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+}
