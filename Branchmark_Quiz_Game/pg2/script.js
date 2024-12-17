@@ -6,14 +6,24 @@ main.appendChild(h2)
 let answer = document.querySelectorAll(".answer");
 for (let i = 0; i < answer.length; i++) {
     let p = document.createElement("p");
-p.textContent = "ciao";
 answer[i].appendChild(p)
 main.appendChild(answer[i])
-}
+} 
 
 
 
+/* funzione: array.questions tramite math.random ---> 
+ciclo ancora sull'array.risposte(append ai bottom o p), --fin qua
 
+--timer
+--reset timer ad ogni domanda nuova
+
+SE true && clicco(event) --> appare procedi = aggiungi percentuale (a pagina collegata), 
+ALTRIMENTI SE false && clicco(event) --> appare procedi = aggiungi percentuale errore. 
+
+-question 1/10 i++
+
+*/
 
 const  questions = [
     {
@@ -113,4 +123,34 @@ const  questions = [
       correct_answer: "Java",
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
-  ];
+  ]
+
+  function random(questionsArray) {
+    const random = Math.floor(Math.random() * questionsArray.length);
+    /* console.log(questionsArray[random]);  */
+    let question = questionsArray[random].question
+    /* console.log(question) */
+    h2.textContent = question
+
+    /* ------------------- */
+
+    let correctAnswer = questionsArray[random].correct_answer
+    /* console.log(correctAnswer)  */
+    let incorrectAnswer = questionsArray[random].incorrect_answers
+    /* console.log(incorrectAnswer) */
+
+    let totAnswer = [...incorrectAnswer, correctAnswer]
+    /* console.log(totAnswer) */
+    for (let i = 0; i < answer.length; i++) {
+      let p = document.createElement("p")
+      p.textContent = totAnswer[i]
+      answer[i].appendChild(p)               //preso da fuori
+    }
+  }
+  random(questions);
+
+
+
+
+
+
