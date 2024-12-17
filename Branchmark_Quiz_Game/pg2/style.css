@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+
+body{
+    background-image: url(../assets/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    margin: auto;
+}
+
+.h1Font{
+    font-size: 60px;
+    font-family: Outfit;
+    color: white;
+    line-height: 65%;
+}
+
+
+.button{
+    background-color: #00FFFF;
+    font-size: 16px;
+    font-family: inter;
+}
+
+/* .answerButtonColor{
+    /* sfumatura con questi due colori :#D20094 , #900080
+} */
+
+.h3Color{
+    color: #D20094;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: inter;
+}
+
+strong{
+    font-weight: 500;
+}
+
+p, ul{
+    color: white;
+    font-family: inter;
+    font-weight: 200;
+}
+
+footer span{
+    color: white;
+    font-family: inter;
+    font-weight: 500;
+}
