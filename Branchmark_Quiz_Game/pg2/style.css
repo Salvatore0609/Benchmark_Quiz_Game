@@ -7,7 +7,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat; 
     background-attachment: fixed;
-    margin: auto;
+    margin: 0;
+    text-align: center;
 }
 
 .h1Font{
@@ -15,6 +16,16 @@ body{
     font-family: Outfit;
     color: white;
     line-height: 65%;
+}
+
+h2 {
+    font-size: 45px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.2;
+    margin: 20px 0;
+    color: white;
+    
 }
 
 
@@ -49,4 +60,48 @@ footer span{
     color: white;
     font-family: inter;
     font-weight: 500;
+}
+
+header img {
+    display: block;
+    margin: 20px 0 20px 20px;
+}
+
+/* answers*/
+
+.answer {
+    position: relative;
+    display: inline-block;
+    margin: 5px 20px;
+    padding: 20px 100px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border-top: 2px solid white; border-left: 2px solid white; border-top: 2px solid white;border-right: 2px solid white; border-bottom: 2px solid rgba(255, 255, 255, 0.34);
+    border-radius: 30px;
+    
+    
+}
+
+.answer p{
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.answer:hover{
+    background-color: #D20094;
+    border-bottom: 1px solid #D20094;
+    background: rgb(64,7,37);
+background: linear-gradient(0deg, rgba(64,7,37,0.9522546419098143) 0%, rgba(210,0,148,1) 62%);
+}
+
+footer{
+    margin-top: 10%;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+footer span:nth-child(2){
+    color: #D20094;
 }
