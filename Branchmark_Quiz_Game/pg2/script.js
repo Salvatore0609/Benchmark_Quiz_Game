@@ -148,6 +148,7 @@ for (let i = 0; i < answer.length; i++) {
       proceedBtn.classList.add("btnProceed");
       footer.appendChild(proceedBtn);
 
+      
       proceedBtn.addEventListener("click", () => {
         for (let i = 0; i < answer.length; i++) {
           answer[i].textContent = "";
@@ -174,11 +175,34 @@ for (let i = 0; i < answer.length; i++) {
         }
       });
       nextQuestion();
-
     }
   });
 }
+function changeQuestionNumber(){
+  for (let i = 0; i < answer.length; i++) {
+    answer[i].textContent = "";
+  }
+  let questionNumber = document.querySelector("#questionNumber");
+  let accumulator = 0;
+  accumulator = accumulator + 1;
+  let number = parseInt(questionNumber.textContent);
+  number = number + accumulator;
+  questionNumber.textContent = number;
+  console.log(number);
+  console.log(questionNumber);
+  
+  // if(number === 3){
+  //   let nextButton=document.createElement("button");
+  //   let anchor = document.createElement("a");
+  //   anchor.href="../pg3/result.html";
+  //   console.log(anchor);
 
+  //   nextButton.textContent="NextPage";
+  //   nextButton.classList.add("btnProceed");
+  //   anchor.appendChild(nextButton);
+  //   footer.appendChild(anchor);
+  // }
+}
 function nextQuestion() {
   let button = document.querySelector(".btnProceed");
   button.addEventListener("click", () => {
@@ -187,31 +211,44 @@ function nextQuestion() {
   });
 }
 
-let totalTime = 5;
+
+let totalTime = 6;
 let currentTime = totalTime;
 
-let timeText = document.querySelector('#timer');
+let timeElement = document.querySelector('#timer');
+// let circleElement = document.querySelector('.circle');
+
+function changePage() {
+    random(questions) 
+    currentTime = totalTime; 
+    updateTimer();
+}
 
 function updateTimer() {
-  if (currentTime >= 0) {
-      timeText.textContent = currentTime; 
-      currentTime--; 
-  } else {
-      clearInterval(timer)
-      random(questions); 
-
-
-      currentTime = totalTime; 
-      setTimeout(startTimer)
-
-      for (let i = 0; i < answer.length; i++) {
-        answer[i].textContent = "";
+    if (currentTime > 0) {
+        timeElement.textContent = currentTime;
+        currentTime--;
+    } else if (currentTime === 0) {
+        clearInterval(timer);
+        changePage(); 
+        startTimer(); 
+        changeQuestionNumber()
+        for (let i = 0; i < answer.length; i++) {
+          answer[i].textContent = "";
+        }
+        random(questions)
+        nextQuestion();
+        
       }
-  }
+      
 }
 
 function startTimer() {
-  timer = setInterval(updateTimer, 1000); 
+    currentTime = totalTime; 
+    timeElement.textContent = currentTime; 
+    setTimeout(() => {
+        timer = setInterval(updateTimer, 1000);
+    }, 1000);
 }
 
 let timer = setInterval(updateTimer, 1000);
