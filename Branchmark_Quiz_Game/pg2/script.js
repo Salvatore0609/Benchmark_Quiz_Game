@@ -174,6 +174,7 @@ for (let i = 0; i < answer.length; i++) {
         }
       });
       nextQuestion();
+
     }
   });
 }
@@ -186,26 +187,31 @@ function nextQuestion() {
   });
 }
 
-
 let totalTime = 5;
 let currentTime = totalTime;
 
-let timeText = document.querySelector("#timer")
+let timeText = document.querySelector('#timer');
 
-function updateTimer(){
-    if(currentTime >= 0){
-    timeText.textContent = currentTime
-    currentTime--
-    }else  {
-        clearInterval(timer);
-        random(questions);
-        resetTimer();
-     }
-   
+function updateTimer() {
+  if (currentTime >= 0) {
+      timeText.textContent = currentTime; 
+      currentTime--; 
+  } else {
+      clearInterval(timer)
+      random(questions); 
+
+
+      currentTime = totalTime; 
+      setTimeout(startTimer)
+
+      for (let i = 0; i < answer.length; i++) {
+        answer[i].textContent = "";
+      }
+  }
 }
 
-const timer = setInterval(updateTimer, 1000);
+function startTimer() {
+  timer = setInterval(updateTimer, 1000); 
+}
 
-updateTimer();
-
-
+let timer = setInterval(updateTimer, 1000);
