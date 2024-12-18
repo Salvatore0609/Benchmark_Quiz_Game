@@ -113,15 +113,32 @@ main {
     background: linear-gradient(0deg, rgba(64,7,37,0.9522546419098143) 0%, rgba(210,0,148,1) 62%);
 }
 
-.btnProceed{
-}
-
 footer{
     margin-top: 10%;
     font-size: 20px;
     font-weight: bold;
-
+    text-align: center;
 }
 footer span:nth-child(2){
     color: #D20094;
 }
+
+footer p {
+    display: inline-block;
+}
+.btnProceed{
+    display: inline-block;
+    padding: 20px 80px;
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 0px 50px 10%;
+}
+
+.btnProceed:hover{
+    
+    background-color: red;
+}
+

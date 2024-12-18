@@ -158,6 +158,20 @@ for (let i = 0; i < answer.length; i++) {
         let number = parseInt(questionNumber.textContent);
         number = number + accumulator;
         questionNumber.textContent = number;
+        console.log(number);
+        console.log(questionNumber);
+        
+        if(number === 3){
+          let nextButton=document.createElement("button");
+          let anchor = document.createElement("a");
+          anchor.href="../pg3/result.html";
+          console.log(anchor);
+
+          nextButton.textContent="NextPage";
+          nextButton.classList.add("btnProceed");
+          anchor.appendChild(nextButton);
+          footer.appendChild(anchor);
+        }
       });
       nextQuestion();
     }
