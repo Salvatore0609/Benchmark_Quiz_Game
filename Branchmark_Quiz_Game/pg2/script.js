@@ -182,7 +182,10 @@ function changeQuestionNumber(){
   for (let i = 0; i < answer.length; i++) {
     answer[i].textContent = "";
   }
+
+  // let arrey = [];
   let questionNumber = document.querySelector("#questionNumber");
+  console.log("ciao");
   let accumulator = 0;
   accumulator = accumulator + 1;
   let number = parseInt(questionNumber.textContent);
@@ -190,8 +193,9 @@ function changeQuestionNumber(){
   questionNumber.textContent = number;
   console.log(number);
   console.log(questionNumber);
-  
+
   // if(number === 3){
+  //   break;
   //   let nextButton=document.createElement("button");
   //   let anchor = document.createElement("a");
   //   anchor.href="../pg3/result.html";
@@ -203,6 +207,7 @@ function changeQuestionNumber(){
   //   footer.appendChild(anchor);
   // }
 }
+
 function nextQuestion() {
   let button = document.querySelector(".btnProceed");
   button.addEventListener("click", () => {
@@ -222,6 +227,7 @@ function changePage() {
     random(questions) 
     currentTime = totalTime; 
     updateTimer();
+    changeQuestionNumber();
 }
 
 function updateTimer() {
@@ -232,13 +238,10 @@ function updateTimer() {
         clearInterval(timer);
         changePage(); 
         startTimer(); 
-        changeQuestionNumber()
         for (let i = 0; i < answer.length; i++) {
           answer[i].textContent = "";
         }
-        random(questions)
-        nextQuestion();
-        
+        random(questions);
       }
       
 }
