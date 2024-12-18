@@ -1,16 +1,8 @@
 let h2 = document.createElement("h2");
-h2.textContent = "What does CPU stand for?"
 let main = document.querySelector("main");
 main.appendChild(h2)
 
 let answer = document.querySelectorAll(".answer");
-for (let i = 0; i < answer.length; i++) {
-    let p = document.createElement("p");
-answer[i].appendChild(p)
-main.appendChild(answer[i])
-} 
-
-
 
 /* funzione: array.questions tramite math.random ---> 
 ciclo ancora sull'array.risposte(append ai bottom o p), --fin qua
@@ -144,7 +136,8 @@ const  questions = [
     for (let i = 0; i < answer.length; i++) {
       let p = document.createElement("p")
       p.textContent = totAnswer[i]
-      answer[i].appendChild(p)               //preso da fuori
+      answer[i].appendChild(p)                  //preso da fuori
+      main.appendChild(answer[i])               
     }
   }
   random(questions);
