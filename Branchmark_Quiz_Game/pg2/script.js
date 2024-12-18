@@ -142,7 +142,21 @@ const  questions = [
   }
   random(questions);
 
+  let footer = document.querySelector('footer')
 
+
+  for (let i=0; i < answer.length; i++){
+    answer[i].addEventListener('click', () => {
+      if (!footer.querySelector(".btnProceed")){
+      let proceedBtn = document.createElement("button");
+      proceedBtn.textContent = "Procedi";
+      proceedBtn.classList.add("btnProceed");
+      footer.appendChild(proceedBtn);
+      }
+    });
+  }
+
+  proceedBtn.addEventListener('click', )
 
 
 
