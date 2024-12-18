@@ -145,19 +145,39 @@ const  questions = [
   let footer = document.querySelector('footer')
 
 
-  for (let i=0; i < answer.length; i++){
-    answer[i].addEventListener('click', () => {
-      if (!footer.querySelector(".btnProceed")){
+for (let i=0; i < answer.length; i++){
+  answer[i].addEventListener('click', () => {
+  if (!footer.querySelector(".btnProceed")){
       let proceedBtn = document.createElement("button");
       proceedBtn.textContent = "Procedi";
       proceedBtn.classList.add("btnProceed");
       footer.appendChild(proceedBtn);
+
+    proceedBtn.addEventListener('click', () => {
+      for(let i=0; i < answer.length; i++){
+        answer[i].textContent = ''
+        let questionNumber = document.querySelector('#questionNumber')
+        questionNumber.textContent = parseInt(questionNumber);
+        
       }
-    });
-  }
+    })
+    nextQuestion()
 
-  proceedBtn.addEventListener('click', )
+    }
+  });
+}
 
+
+
+function nextQuestion(){
+  let button = document.querySelector('.btnProceed')
+    button.addEventListener('click', () => {
+    random(questions);
+    button.remove()
+  })
+}
+
+  
 
 
 
