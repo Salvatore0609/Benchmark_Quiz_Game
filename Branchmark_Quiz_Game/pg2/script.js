@@ -185,3 +185,27 @@ function nextQuestion() {
     button.remove();
   });
 }
+
+
+let totalTime = 5;
+let currentTime = totalTime;
+
+let timeText = document.querySelector("#timer")
+
+function updateTimer(){
+    if(currentTime >= 0){
+    timeText.textContent = currentTime
+    currentTime--
+    }else  {
+        clearInterval(timer);
+        random(questions);
+        resetTimer();
+     }
+   
+}
+
+const timer = setInterval(updateTimer, 1000);
+
+updateTimer();
+
+
