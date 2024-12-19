@@ -75,9 +75,43 @@ button {
     color: #FFFFFF;
     font-weight: bold;
     font-size: 18px;
-    margin: 20px 0px 50px 0;
+    margin: 100px 0px 0px 0;
 }
 
 button:hover{
     background-color: red;
+}
+
+#chartContainer {
+    position: relative; 
+    display: inline-block;
+    transform: scale(-1,1);
+    top: 100px;
+}
+
+.chartCenterContent {
+    position: absolute; /* Posiziona il contenuto sopra il canvas */
+    top: 50%; /* Allinea verticalmente */
+    left: 50%; /* Allinea orizzontalmente */
+    transform: translate(-50%, -50%); /* Correzione precisa per il centro */
+    text-align: center;
+    
+}
+
+.chartCenterContent p {
+    margin: 0;
+    font-weight: 500;
+    transform: scale(-1,1);
+
+}
+
+.chartCenterContent .azzuro {
+    font-weight: bold;
+    color: #00ffff;
+}
+
+.chartCenterContent .piccolino {
+    font-size: 10px;
+    margin-top: 10px;
+    line-height: 1.2;
 }

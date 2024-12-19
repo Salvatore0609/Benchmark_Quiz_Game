@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="./style.css">
     <script src="../pg2/script.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -24,12 +25,16 @@
                     <p>4/6 question</p>
                 </div>
 
-                <div class="boxResult">
-                    <p>Congratulations</p>
-                    <p class="azzuro">You passed the exam</p>
-                    <p class="piccolino">We'll send you the certificate in few minutes.
-                        Check your email (including promotions / spam folder)</p>
+                <div id="chartContainer">
+                    <canvas id="resultChart"></canvas>
+                    <div class="chartCenterContent">
+                        <p>Congratulations</p>
+                        <p class="azzuro">You passed the exam</p>
+                        <p class="piccolino">We'll send you the certificate in a few minutes.<br>
+                            Check your email (including promotions / spam folder)</p>
+                    </div>
                 </div>
+                
 
                 <div class="boxResult">
                     <h2 class="result">Wrong</h2>
@@ -39,7 +44,11 @@
             </div>
         </main>
         <footer>
-            <button>RATE US</button>
+            <a href="../pg4/feedback.html">
+                <button>RATE US</button>
+            </a>
+            
+            </div>            
         </footer>
 </body>
 </html>

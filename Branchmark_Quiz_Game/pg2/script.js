@@ -258,3 +258,38 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Verifica se siamo nella pagina dei risultati controllando il canvas
+  const canvas = document.getElementById("resultChart");
+
+  if (canvas) {
+    // Logica per il grafico Chart.js
+    const successPercentage = localStorage.getItem("successPercentage") || "0";
+    const errorPercentage = localStorage.getItem("errorPercentage") || "0";
+
+    const ctx = canvas.getContext("2d");
+
+    new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        
+        datasets: [
+          {
+            
+            data: [successPercentage, errorPercentage],
+            backgroundColor: ["#00FFFF", "#D20094"], 
+            borderWidth: 0,
+            
+          },
+        ],
+      },
+      options: {
+        cutout: "70%",
+      },
+    });
+    
+  } else {
+    console.log("Grafico Chart.js non caricato: questa pagina non necessita del grafico.");
+  }
+});
