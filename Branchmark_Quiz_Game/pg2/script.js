@@ -1,21 +1,13 @@
+/*  
+SE true && clicco(event) --> appare procedi = aggiungi percentuale (a pagina collegata), 
+ALTRIMENTI SE false && clicco(event) --> appare procedi = aggiungi percentuale errore. 
+*/
+
 let h2 = document.createElement("h2");
 let main = document.querySelector("main");
 main.appendChild(h2);
 
 let answer = document.querySelectorAll(".answer");
-
-/* funzione: array.questions tramite math.random ---> 
-ciclo ancora sull'array.risposte(append ai bottom o p), --fin qua
-
---timer
---reset timer ad ogni domanda nuova
-
-SE true && clicco(event) --> appare procedi = aggiungi percentuale (a pagina collegata), 
-ALTRIMENTI SE false && clicco(event) --> appare procedi = aggiungi percentuale errore. 
-
--question 1/10 i++
-
-*/
 
 const questions = [
   {
@@ -112,7 +104,7 @@ const questions = [
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
 ];
-
+//funzione per il random delle domande collegate alle risposte
 function random(questionsArray) {
   const random = Math.floor(Math.random() * questionsArray.length);
   /* console.log(questionsArray[random]);  */
@@ -138,8 +130,8 @@ function random(questionsArray) {
 }
 random(questions);
 
+//codice per il BOTTONE procedi collegato al counter QUESTION
 let footer = document.querySelector("footer");
-
 for (let i = 0; i < answer.length; i++) {
   answer[i].addEventListener("click", () => {
     if (!footer.querySelector(".btnProceed")) {
@@ -178,6 +170,8 @@ for (let i = 0; i < answer.length; i++) {
     }
   });
 }
+
+//funzione collegata al QUESTION per dare logica
 function changeQuestionNumber(){
   for (let i = 0; i < answer.length; i++) {
     answer[i].textContent = "";
@@ -193,23 +187,12 @@ function changeQuestionNumber(){
   questionNumber.textContent = number;
   console.log(number);
   console.log(questionNumber);
-  
-
-
-  // if(number === 3){
-  //   break;
-  //   let nextButton=document.createElement("button");
-  //   let anchor = document.createElement("a");
-  //   anchor.href="../pg3/result.html";
-  //   console.log(anchor);
-
-  //   nextButton.textContent="NextPage";
-  //   nextButton.classList.add("btnProceed");
-  //   anchor.appendChild(nextButton);
-  //   footer.appendChild(anchor);
-  // }
+  if (number === 3) {
+    window.location.href = "../pg3/result.html"; 
+  }
 }
 
+//funzione per andare alla domanda successiva tramite bottone
 function nextQuestion() {
   let button = document.querySelector(".btnProceed");
   button.addEventListener("click", () => {
@@ -218,19 +201,12 @@ function nextQuestion() {
   });
 }
 
-let totalTime = 2;
+//funzione per il timer collegato allo svuotamento delle risposte
+let totalTime = 10;
 let currentTime = totalTime;
 
 let timeElement = document.querySelector('#timer');
 let circleElement = document.querySelector('.circle');
-
-function changePage() {
-    random(questions) 
-    currentTime = totalTime; 
-    updateTimer();
-    changeQuestionNumber();
-}
-
 function updateTimer() {
     if (currentTime > 0) {
         timeElement.textContent = currentTime;
@@ -252,6 +228,7 @@ function updateTimer() {
       
 }
 
+//funzione del timer di partenza concatenata alla funzione updateTimer
 function startTimer() {
     currentTime = totalTime; 
     timeElement.textContent = currentTime; 
@@ -259,5 +236,12 @@ function startTimer() {
         timer = setInterval(updateTimer, 1000);
     }, 1000);
 }
-
 let timer = setInterval(updateTimer, 1000);
+
+//alla scadenza del timer funzione per refreshare la pagina portanto alla domanda successiva
+function changePage() {
+    random(questions) 
+    currentTime = totalTime; 
+    updateTimer();
+    changeQuestionNumber();
+}
