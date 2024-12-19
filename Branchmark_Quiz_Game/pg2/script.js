@@ -3,9 +3,8 @@ SE true && clicco(event) --> appare procedi = aggiungi percentuale (a pagina col
 ALTRIMENTI SE false && clicco(event) --> appare procedi = aggiungi percentuale errore. 
 */
 
-let h2 = document.createElement("h2");
-let main = document.querySelector("main");
-main.appendChild(h2);
+
+/* main.appendChild(h2); */
 
 let answer = document.querySelectorAll(".answer");
 
@@ -106,12 +105,14 @@ const questions = [
 ];
 //funzione per il random delle domande collegate alle risposte
 function random(questionsArray) {
+  let h2 = document.querySelector("#questionTitle");
+  let main = document.querySelector("main");
   const random = Math.floor(Math.random() * questionsArray.length);
   /* console.log(questionsArray[random]);  */
   let question = questionsArray[random].question;
   /* console.log(question) */
-  h2.textContent = question;
-
+  h2.textContent = question; //----> errore a pagina 3
+  main.appendChild(h2);
   /* ------------------- */
 
   let correctAnswer = questionsArray[random].correct_answer;
@@ -245,3 +246,17 @@ function changePage() {
     updateTimer();
     changeQuestionNumber();
 }
+
+
+
+/* logica pagina 3 */
+let correctAnswer = questions.correct_answer;
+let incorrectAnswer = questions.incorrect_answers;
+
+let answerCorrect = [...correctAnswer]
+console.log(answerCorrect)
+let answerWrong = [...incorrectAnswer]
+console.log(answerWrong)
+/* let totAnswer = [...incorrectAnswer, correctAnswer]; */
+
+/* function  */
