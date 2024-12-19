@@ -217,7 +217,7 @@ function nextQuestion() {
 }
 
 
-let totalTime = 6;
+let totalTime = 60;
 let currentTime = totalTime;
 
 let timeElement = document.querySelector('#timer');
@@ -235,8 +235,8 @@ function updateTimer() {
         timeElement.textContent = currentTime;
         // Crea l'angolo e Applica il gradient conic per l'effetto countdown
 
-        const angle = (currentTime / totalTime) * 360;
-        circleElement.style.background = `conic-gradient(#3498db ${angle}deg, #e6e6e6 ${angle}deg)`;
+        const angle = (currentTime / totalTime) * (360);
+        circleElement.style.background = `conic-gradient(#00ffff ${angle}deg,rgba(255, 255, 255, 0.68) ${angle}deg)`;
 
         currentTime--;
     } else if (currentTime === 0) {
