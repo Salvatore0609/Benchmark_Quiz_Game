@@ -109,27 +109,6 @@ if (document.querySelector("#questionTitle")) {
   startTimer();
 }
 
-// Funzione per visualizzare domande random
-function random(questionsArray) {
-  let h2 = document.querySelector("#questionTitle");
-  let main = document.querySelector("main");
-  const random = Math.floor(Math.random() * questionsArray.length);
-
-  let question = questionsArray[random].question;
-  h2.textContent = question;
-
-  let correctAnswer = questionsArray[random].correct_answer;
-  let incorrectAnswer = questionsArray[random].incorrect_answers;
-  let totAnswer = [...incorrectAnswer, correctAnswer];
-
-  for (let i = 0; i < answer.length; i++) {
-    let p = document.createElement("p");
-    p.textContent = totAnswer[i];
-    answer[i].innerHTML = "";
-    answer[i].appendChild(p);
-    main.appendChild(answer[i]);
-  }
-}
 
 // Gestione del bottone "Procedi"
 for (let i = 0; i < answer.length; i++) {
@@ -141,6 +120,7 @@ for (let i = 0; i < answer.length; i++) {
       footer.appendChild(proceedBtn);
 
       proceedBtn.addEventListener("click", () => {
+        localStorage.setItem("ciao", "abc");
         for (let i = 0; i < answer.length; i++) {
           answer[i].textContent = "";
         }
@@ -201,18 +181,39 @@ function changePage() {
 
 
 //pagina 3
+// Funzione per visualizzare domande random
+function random(questionsArray) {
+  let h2 = document.querySelector("#questionTitle");
+  let main = document.querySelector("main");
+  const random = Math.floor(Math.random() * questionsArray.length);
+
+  let question = questionsArray[random].question;
+  h2.textContent = question;
+
+  let correctAnswer = questionsArray[random].correct_answer;
+  console.log(correctAnswer);
+  let incorrectAnswer = questionsArray[random].incorrect_answers;
+  let totAnswer = [...incorrectAnswer, correctAnswer];
+  
+  // logica di controllo delle risposte
+
+  
 
 
 
-/* let answerWrogn = [...incorrectAnswer];
-console.log(incorrectAnswer) */
-
-
-for(let i = 0 ; i <= questions.length; i++){
-  let element = questions[i].correct_answer;
-  console.log(element)
+  for (let i = 0; i < answer.length; i++) {
+    let p = document.createElement("p");
+    p.textContent = totAnswer[i];
+    answer[i].innerHTML = "";
+    answer[i].appendChild(p);
+    main.appendChild(answer[i]);
+    
+  }
 }
 
-/* function controlQuestion() {
-  
-} */
+
+// for (let i = 0; i < questions.length; i++) {
+//   let element = questions[i].correct_answer;
+//   console.log(element);
+// }
+
