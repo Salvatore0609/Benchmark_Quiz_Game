@@ -6,19 +6,40 @@
     <title>Quiz-Game</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" type="module"></script>
+    <script src="../pg2/script.js" type="module"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="./assets/epicode_logo.png" alt="logo" width="150px">
+    <header>
+            <img src="../assets/epicode_logo.png" alt="logo" width="150px">
         </header>
         <main>
-     
+            <div class="titleDiv">
+                <h2>Result</h2>
+                <p>The summary of your answer</p>
+            </div>
+            <div id="containerResult">
+                <div class="boxResult">
+                    <h2 class="result">Correct</h2>
+                    <h2>60%</h2>
+                    <p>4/6 question</p>
+                </div>
+
+                <div class="boxResult">
+                    <p>Congratulations</p>
+                    <p class="azzuro">You passed the exam</p>
+                    <p class="piccolino">We'll send you the certificate in few minutes.
+                        Check your email (including promotions / spam folder)</p>
+                </div>
+
+                <div class="boxResult">
+                    <h2 class="result">Wrong</h2>
+                    <h2>30%</h2>
+                    <p>2/6 question</p>
+                </div>
+            </div>
         </main>
         <footer>
-            
+            <button>RATE US</button>
         </footer>
-    </div>  
 </body>
 </html>
