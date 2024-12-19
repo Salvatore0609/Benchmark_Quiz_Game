@@ -172,9 +172,6 @@ header img {
     -webkit-mask-image: radial-gradient(circle at center, transparent 50%, black 51%);
     position: relative;
     transform: scale(-1, 1);
-
-
-
 }
 
 #timer {
