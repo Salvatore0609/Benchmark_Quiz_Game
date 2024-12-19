@@ -1,12 +1,10 @@
-/*  
-SE true && clicco(event) --> appare procedi = aggiungi percentuale (a pagina collegata), 
-ALTRIMENTI SE false && clicco(event) --> appare procedi = aggiungi percentuale errore. 
-*/
-
 let answer = document.querySelectorAll(".answer");
 let footer = document.querySelector("footer");
 let timer;
-//
+let userScore = 0; 
+let totalAnswers = 0; 
+let selectedAnswer = "";
+
 const questions = [
   {
     category: "Science: Computers",
@@ -103,16 +101,40 @@ const questions = [
   },
 ];
 
+
 // Controllo per evitare errori nella pagina 3
 if (document.querySelector("#questionTitle")) {
   random(questions);
   startTimer();
 }
 
+// Funzione per visualizzare domande random
+function random(questionsArray) {
+  let h2 = document.querySelector("#questionTitle");
+  let main = document.querySelector("main");
+  const random = Math.floor(Math.random() * questionsArray.length);
 
-// Gestione del bottone "Procedi"
+  let question = questionsArray[random].question;
+  h2.textContent = question;
+
+  let correctAnswer = questionsArray[random].correct_answer;
+  let incorrectAnswer = questionsArray[random].incorrect_answers;
+  let totAnswer = [...incorrectAnswer, correctAnswer];
+
+  for (let i = 0; i < answer.length; i++) {
+    let p = document.createElement("p");
+    p.textContent = totAnswer[i];
+    answer[i].innerHTML = "";
+    answer[i].appendChild(p);
+    main.appendChild(answer[i]);
+  }
+}
+
+// Gestione delle risposte e del bottone "Procedi"
 for (let i = 0; i < answer.length; i++) {
-  answer[i].addEventListener("click", () => {
+  answer[i].addEventListener("click", (event) => {
+    selectedAnswer = event.target.textContent; 
+
     if (!footer.querySelector(".btnProceed")) {
       let proceedBtn = document.createElement("button");
       proceedBtn.textContent = "Procedi";
@@ -120,18 +142,39 @@ for (let i = 0; i < answer.length; i++) {
       footer.appendChild(proceedBtn);
 
       proceedBtn.addEventListener("click", () => {
-        localStorage.setItem("ciao", "abc");
-        for (let i = 0; i < answer.length; i++) {
-          answer[i].textContent = "";
-        }
-        changeQuestionNumber();
+        checkAnswer(); 
+        updatePercentage(); 
+        changeQuestionNumber(); 
         proceedBtn.remove();
       });
     }
   });
 }
 
-// Funzione per aggiornare il numero della domanda
+// Funzione per verificare la risposta
+function checkAnswer() {
+  const currentQuestion = document.querySelector("#questionTitle").textContent;
+  const correctAnswer = questions.find(q => q.question === currentQuestion).correct_answer;
+
+  totalAnswers++; 
+  if (selectedAnswer === correctAnswer) {
+    userScore++;
+  }
+  console.log(`Punteggio: ${userScore} / ${totalAnswers}`);
+}
+
+// Funzione per aggiornare le percentuali
+function updatePercentage() {
+  const successPercentage = ((userScore / totalAnswers) * 100).toFixed(2);
+  const errorPercentage = (100 - successPercentage).toFixed(2);
+
+  localStorage.setItem("successPercentage", successPercentage);
+  localStorage.setItem("errorPercentage", errorPercentage);
+  localStorage.setItem("correctAnswers", userScore); 
+  localStorage.setItem("totalAnswers", totalAnswers);
+}
+
+// Funzione per cambiare il numero della domanda
 function changeQuestionNumber() {
   let questionNumber = document.querySelector("#questionNumber");
   let number = parseInt(questionNumber.textContent);
@@ -143,11 +186,12 @@ function changeQuestionNumber() {
   } else {
     random(questions);
     resetTimer();
+    selectedAnswer = ""; 
   }
 }
 
 // Timer con effetto countdown
-let totalTime = 10;
+let totalTime = 60;
 let currentTime = totalTime;
 let timeElement = document.querySelector("#timer");
 let circleElement = document.querySelector(".circle");
@@ -159,7 +203,7 @@ function updateTimer() {
     circleElement.style.background = `conic-gradient(#00ffff ${angle}deg,rgba(255, 255, 255, 0.68) ${angle}deg)`;
     currentTime--;
   } else {
-    changePage();
+    handleTimeout(); 
   }
 }
 
@@ -173,47 +217,44 @@ function resetTimer() {
   startTimer();
 }
 
-// Passaggio automatico alla domanda successiva alla scadenza del timer
-function changePage() {
+// Funzione per gestire il timeout
+function handleTimeout() {
+  totalAnswers++; 
+  updatePercentage(); 
   changeQuestionNumber();
-  resetTimer();
 }
 
 
-//pagina 3
-// Funzione per visualizzare domande random
-function random(questionsArray) {
-  let h2 = document.querySelector("#questionTitle");
-  let main = document.querySelector("main");
-  const random = Math.floor(Math.random() * questionsArray.length);
 
-  let question = questionsArray[random].question;
-  h2.textContent = question;
-
-  let correctAnswer = questionsArray[random].correct_answer;
-  console.log(correctAnswer);
-  let incorrectAnswer = questionsArray[random].incorrect_answers;
-  let totAnswer = [...incorrectAnswer, correctAnswer];
+document.addEventListener("DOMContentLoaded", () => {
   
-  // logica di controllo delle risposte
-
+    const successPercentage = localStorage.getItem("successPercentage") || "0";
+    const errorPercentage = localStorage.getItem("errorPercentage") || "0";
+    const totalAnswers = parseInt(localStorage.getItem("totalAnswers")) || 0;
+    const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
+    const incorrectAnswers = totalAnswers - correctAnswers;
   
-
-
-
-  for (let i = 0; i < answer.length; i++) {
-    let p = document.createElement("p");
-    p.textContent = totAnswer[i];
-    answer[i].innerHTML = "";
-    answer[i].appendChild(p);
-    main.appendChild(answer[i]);
-    
+  
+    const correctPercentageElement = document.querySelector(".boxResult:nth-child(1) h2:nth-of-type(2)");
+    const correctCountElement = document.querySelector(".boxResult:nth-child(1) p");
+    const wrongPercentageElement = document.querySelector(".boxResult:nth-child(3) h2:nth-of-type(2)");
+    const wrongCountElement = document.querySelector(".boxResult:nth-child(3) p");
+    const passMessageElement = document.querySelector(".azzuro");
+  
+  
+    if (correctPercentageElement && correctCountElement && wrongPercentageElement && wrongCountElement && passMessageElement) {
+      
+      correctPercentageElement.textContent = `${successPercentage}%`;
+      correctCountElement.textContent = `${correctAnswers}/${totalAnswers} questions`;
+  
+      wrongPercentageElement.textContent = `${errorPercentage}%`;
+      wrongCountElement.textContent = `${incorrectAnswers}/${totalAnswers} questions`;
+  
+  
+      if (parseFloat(successPercentage) >= 60) {
+        passMessageElement.textContent = "You passed the exam 🎉";
+      } else {
+        passMessageElement.textContent = "You did not pass the exam 😢";
+      }
   }
-}
-
-
-// for (let i = 0; i < questions.length; i++) {
-//   let element = questions[i].correct_answer;
-//   console.log(element);
-// }
-
+});
