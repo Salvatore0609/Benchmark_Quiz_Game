@@ -221,7 +221,7 @@ let totalTime = 6;
 let currentTime = totalTime;
 
 let timeElement = document.querySelector('#timer');
-// let circleElement = document.querySelector('.circle');
+let circleElement = document.querySelector('.circle');
 
 function changePage() {
     random(questions) 
@@ -233,6 +233,11 @@ function changePage() {
 function updateTimer() {
     if (currentTime > 0) {
         timeElement.textContent = currentTime;
+        // Crea l'angolo e Applica il gradient conic per l'effetto countdown
+
+        const angle = (currentTime / totalTime) * 360;
+        circleElement.style.background = `conic-gradient(#3498db ${angle}deg, #e6e6e6 ${angle}deg)`;
+
         currentTime--;
     } else if (currentTime === 0) {
         clearInterval(timer);

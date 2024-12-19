@@ -141,3 +141,43 @@ footer p {
     background-color: red;
 }
 
+
+.timer-container {
+    display: inline-block;
+    /* position: relative; */
+    width: 200px;
+    height: 200px;
+}
+
+.circle {
+    display: inline-block;
+    /* position: relative; */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: transparent; /* Assicura trasparenza */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Evita sovrapposizioni indesiderate */
+  }
+  
+  #timer {
+    display: inline-block;
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    z-index: 2; /* Porta il testo in primo piano */
+  }
+  
+  .circle::after {
+    content: "";
+    position: absolute;
+    width: 100px; /* Dimensione del foro */
+    height: 100px; /* Dimensione del foro */
+    background-color: white; /* Colore del foro */
+    border-radius: 50%;
+    z-index: 1; /* Porta il foro sotto il testo */
+  }
+  
