@@ -193,6 +193,8 @@ function changeQuestionNumber(){
   questionNumber.textContent = number;
   console.log(number);
   console.log(questionNumber);
+  
+
 
   // if(number === 3){
   //   break;
@@ -216,8 +218,7 @@ function nextQuestion() {
   });
 }
 
-
-let totalTime = 60;
+let totalTime = 2;
 let currentTime = totalTime;
 
 let timeElement = document.querySelector('#timer');
