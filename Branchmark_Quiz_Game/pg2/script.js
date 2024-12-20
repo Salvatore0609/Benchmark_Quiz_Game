@@ -175,7 +175,6 @@ function updatePercentage() {
 }
 
 // Funzione per cambiare il numero della domanda
-// Funzione per cambiare il numero della domanda
 function changeQuestionNumber() {
   let questionNumber = document.querySelector("#questionNumber");
   let number = parseInt(questionNumber.textContent);
@@ -257,6 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wrongPercentageElement = document.querySelector(".boxResult:nth-child(3) h2:nth-of-type(2)");
     const wrongCountElement = document.querySelector(".boxResult:nth-child(3) p");
     const passMessageElement = document.querySelector(".azzuro");
+    const sorryMessageElement = document.querySelector(".chartCenterContent p");
   
   
     if (correctPercentageElement && correctCountElement && wrongPercentageElement && wrongCountElement && passMessageElement) {
@@ -269,9 +269,10 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
       if (parseFloat(successPercentage) >= 60) {
-        passMessageElement.textContent = "You passed the exam 🎉";
+        passMessageElement.textContent = "You passed the exam ";
       } else {
-        passMessageElement.textContent = "You did not pass the exam 😢";
+        passMessageElement.textContent = "You did not pass the exam ";
+        sorryMessageElement.textContent = "Sorry!";
       }
   }
 });
