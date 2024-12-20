@@ -127,14 +127,28 @@ function random(questionsArray) {
     answer[i].innerHTML = "";
     answer[i].appendChild(p);
     main.appendChild(answer[i]);
+
+    // Riabilita i pulsanti per ogni nuova domanda
+    answer[i].disabled = false;
   }
 }
+
 
 // Gestione delle risposte e del bottone "Procedi"
 for (let i = 0; i < answer.length; i++) {
   answer[i].addEventListener("click", (event) => {
-    selectedAnswer = event.target.textContent; 
-    
+    const questionNumber = parseInt(document.querySelector("#questionNumber").textContent);
+
+    // Disabilita i pulsanti alla decima domanda
+    if (questionNumber > questions.length) {
+      for (let j = 0; j < answer.length; j++) {
+        answer[j].disabled = true;
+      }
+      return; // Esci dall'evento click
+    }
+
+    selectedAnswer = event.target.textContent;
+
     if (!footer.querySelector(".btnProceed")) {
       let proceedBtn = document.createElement("button");
       proceedBtn.textContent = "Procedi";
@@ -142,14 +156,15 @@ for (let i = 0; i < answer.length; i++) {
       footer.appendChild(proceedBtn);
 
       proceedBtn.addEventListener("click", () => {
-        checkAnswer(); 
-        updatePercentage(); 
-        changeQuestionNumber(); 
+        checkAnswer();
+        updatePercentage();
+        changeQuestionNumber();
         proceedBtn.remove();
       });
     }
   });
 }
+
 
 // Funzione per verificare la risposta
 function checkAnswer() {
@@ -180,19 +195,24 @@ function changeQuestionNumber() {
   number++;
 
   if (number > questions.length) {
+    // Disabilita i pulsanti delle risposte alla fine
+    for (let i = 0; i < answer.length; i++) {
+      answer[i].disabled = true;
+    }
+
     // Crea il pulsante "See Result" se non esiste già
     if (!footer.querySelector(".btnSeeResult")) {
       let seeResult = document.createElement("button");
       seeResult.textContent = "See Result";
       seeResult.classList.add("btnSeeResult");
       footer.appendChild(seeResult);
-      
+
       // Aggiungi un evento al pulsante "See Result"
       seeResult.addEventListener("click", () => {
         window.location.href = "../pg3/result.html";
       });
 
-      // Rimuovi il pulsante "Proceed" se esiste
+      // Rimuovi il pulsante "Procedi" se esiste
       let proceedBtn = document.querySelector(".btnProceed");
       if (proceedBtn) {
         proceedBtn.remove();
@@ -206,6 +226,7 @@ function changeQuestionNumber() {
     selectedAnswer = "";
   }
 }
+
 
 
 // Timer con effetto countdown
