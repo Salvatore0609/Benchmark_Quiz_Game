@@ -189,6 +189,8 @@ function updatePercentage() {
   localStorage.setItem("totalAnswers", totalAnswers);
 }
 
+
+
 function changeQuestionNumber() {
   let questionNumber = document.querySelector("#questionNumber");
   let number = parseInt(questionNumber.textContent);
@@ -230,7 +232,7 @@ function changeQuestionNumber() {
 
 
 // Timer con effetto countdown
-let totalTime = 60;
+let totalTime = 10;
 let currentTime = totalTime;
 let timeElement = document.querySelector("#timer");
 let circleElement = document.querySelector(".circle");
@@ -260,7 +262,13 @@ function resetTimer() {
 function handleTimeout() {
   totalAnswers++; 
   updatePercentage(); 
-  changeQuestionNumber();
+  if (questionNumber >= questions.length) {
+    // Reindirizza alla pagina dei risultati
+    window.location.href = "../pg3/result.html";
+  } else {
+    // Altrimenti, procedi con la prossima domanda
+    changeQuestionNumber();
+  }
 }
 
 
@@ -314,14 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
     new Chart(ctx, {
       type: "doughnut",
       data: {
-        
+
         datasets: [
           {
-            
-            data: [successPercentage, errorPercentage],
-            backgroundColor: ["#00FFFF", "#D20094"], 
+
+            data: [errorPercentage, successPercentage],
+            backgroundColor: ["#D20094", "#00FFFF"], 
             borderWidth: 0,
-            
+
           },
         ],
       },
@@ -329,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cutout: "70%",
       },
     });
-    
+
   } else {
     console.log("Grafico Chart.js non caricato: questa pagina non necessita del grafico.");
   }
