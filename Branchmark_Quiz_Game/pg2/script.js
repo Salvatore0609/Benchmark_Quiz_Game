@@ -117,14 +117,16 @@ function random(questionsArray) {
   let question = questionsArray[random].question;
   h2.textContent = question;
 
+  
   let correctAnswer = questionsArray[random].correct_answer;
   let incorrectAnswer = questionsArray[random].incorrect_answers;
   let totAnswer = [...incorrectAnswer, correctAnswer];
+  totAnswer = totAnswer.sort(() => Math.random() - 0.5);
 
   for (let i = 0; i < answer.length; i++) {
     let p = document.createElement("p");
     p.textContent = totAnswer[i];
-    answer[i].innerHTML = "";
+    answer[i].textContent = "";
     answer[i].appendChild(p);
     main.appendChild(answer[i]);
 
