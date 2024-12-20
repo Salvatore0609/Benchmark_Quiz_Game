@@ -134,7 +134,7 @@ function random(questionsArray) {
 for (let i = 0; i < answer.length; i++) {
   answer[i].addEventListener("click", (event) => {
     selectedAnswer = event.target.textContent; 
-
+    
     if (!footer.querySelector(".btnProceed")) {
       let proceedBtn = document.createElement("button");
       proceedBtn.textContent = "Procedi";
@@ -174,37 +174,39 @@ function updatePercentage() {
   localStorage.setItem("totalAnswers", totalAnswers);
 }
 
-// Funzione per cambiare il numero della domanda
 function changeQuestionNumber() {
   let questionNumber = document.querySelector("#questionNumber");
   let number = parseInt(questionNumber.textContent);
   number++;
-  questionNumber.textContent = number;
 
-  if (number === 10) {
-    // Crea il pulsante "See Result"
-    let seeResult = document.createElement("button");
-    seeResult.textContent = "See Result";
-    seeResult.classList.add("btnSeeResult");
-    footer.appendChild(seeResult);
+  if (number > questions.length) {
+    // Crea il pulsante "See Result" se non esiste già
+    if (!footer.querySelector(".btnSeeResult")) {
+      let seeResult = document.createElement("button");
+      seeResult.textContent = "See Result";
+      seeResult.classList.add("btnSeeResult");
+      footer.appendChild(seeResult);
+      
+      // Aggiungi un evento al pulsante "See Result"
+      seeResult.addEventListener("click", () => {
+        window.location.href = "../pg3/result.html";
+      });
 
-    // Rimuovi il pulsante "Proceed" se esiste
-    let proceedBtn = document.querySelector(".btnProceed");
-    if (proceedBtn) {
-      proceedBtn.remove();
+      // Rimuovi il pulsante "Proceed" se esiste
+      let proceedBtn = document.querySelector(".btnProceed");
+      if (proceedBtn) {
+        proceedBtn.remove();
+      }
     }
-
-    // Aggiungi un evento al pulsante "See Result"
-    seeResult.addEventListener("click", () => {
-      window.location.href = "../pg3/result.html";
-    });
   } else {
+    // Aggiorna il numero della domanda
+    questionNumber.textContent = number;
     random(questions);
     resetTimer();
     selectedAnswer = "";
   }
-
 }
+
 
 // Timer con effetto countdown
 let totalTime = 60;
@@ -279,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Verifica se siamo nella pagina dei risultati controllando il canvas
-  const canvas = document.getElementById("resultChart");
+  const canvas = document.querySelector("#resultChart");
 
   if (canvas) {
     // Logica per il grafico Chart.js
