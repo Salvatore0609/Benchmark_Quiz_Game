@@ -1,3 +1,4 @@
+let shownQuestions = [];
 let answer = document.querySelectorAll(".answer");
 let footer = document.querySelector("footer");
 let timer;
@@ -113,9 +114,20 @@ function random(questionsArray) {
   let h2 = document.querySelector("#questionTitle");
   let main = document.querySelector("main");
 
-  // Seleziona una domanda casuale
-  const random = Math.floor(Math.random() * questionsArray.length);
-  let selectedQuestion = questionsArray[random];
+  if (shownQuestions.length === questionsArray.length) {
+    window.location.href = "../pg3/result.html";
+    return;
+  }
+
+  let selectedQuestion;
+
+  do {
+    const randomIndex = Math.floor(Math.random() * questionsArray.length);
+    selectedQuestion = questionsArray[randomIndex];
+  } while (shownQuestions.includes(selectedQuestion.question));
+
+
+  shownQuestions.push(selectedQuestion.question);
 
   let question = selectedQuestion.question;
   h2.textContent = question;
@@ -124,21 +136,18 @@ function random(questionsArray) {
   let incorrectAnswer = selectedQuestion.incorrect_answers;
   let totAnswer = [...incorrectAnswer, correctAnswer];
 
-  // Mescola le risposte
+
   totAnswer = totAnswer.sort(() => Math.random() - 0.5);
 
-  // Ripristina e aggiorna i bottoni
   for (let i = 0; i < answer.length; i++) {
-
     answer[i].style.display = "inline-block";
 
     if (totAnswer[i]) {
       let p = document.createElement("p");
       p.textContent = totAnswer[i];
-      answer[i].textContent = "";
+      answer[i].innerHTML = "";
       answer[i].appendChild(p);
-      answer[i].disabled = false; 
-
+      answer[i].disabled = false;
     } else {
       answer[i].style.display = "none";
     }
