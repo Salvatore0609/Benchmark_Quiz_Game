@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins&display=swap');
+
+body{
+    background-image: url(../assets/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    margin-left: 10%;
+}
+
+.h1Font{
+    font-size: 60px;
+    font-family: Outfit;
+    color: white;
+    line-height: 65%;
+}
+
+
+.button{
+    background-color: #00FFFF;
+    font-size: 16px;
+    font-family: inter;
+}
+
+
+
+.h3Color{
+    color: #D20094;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: inter;
+}
+
+strong{
+    font-weight: 500;
+}
+
+p, ul{
+    color: white;
+    font-family: inter;
+    font-weight: 200;
+}
+
+footer span{
+    color: white;
+    font-family: inter;
+    font-weight: 500;
+}
+/* header */
+
+header img{
+    margin: 0 auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+main h1 span{
+    font-weight: bold;
+}
+
+
+main h1{
+    margin-bottom: 5%;
+}
+
+p{
+    margin-top: 1%;
+}
+
+ul{
+    margin-top: 3%;
+    margin-left: 2%;
+}
+ul li{
+    list-style-type:disc;
+    color: white;
+    margin-bottom: 1%;
+}
+
+
+/* footer */
+footer{
+    margin-top: 10%;
+}
+
+
+input {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none ;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+input:checked {
+    background-color: #D20094; 
+}
+
+input:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+span{
+    margin-left: 1%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+button{
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    padding: 1em 3em; 
+    font-weight: bold;
+    margin-left: 19%;
+    cursor: pointer;
+
+  
+}
+
+button:hover{
+    -webkit-box-shadow:0px 0px 27px 6px rgba(0,255,255,0.9);
+    -moz-box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+    box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+}
