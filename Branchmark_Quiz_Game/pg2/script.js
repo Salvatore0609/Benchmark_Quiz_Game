@@ -112,26 +112,37 @@ if (document.querySelector("#questionTitle")) {
 function random(questionsArray) {
   let h2 = document.querySelector("#questionTitle");
   let main = document.querySelector("main");
-  const random = Math.floor(Math.random() * questionsArray.length);
 
-  let question = questionsArray[random].question;
+  // Seleziona una domanda casuale
+  const random = Math.floor(Math.random() * questionsArray.length);
+  let selectedQuestion = questionsArray[random];
+
+  let question = selectedQuestion.question;
   h2.textContent = question;
 
-  
-  let correctAnswer = questionsArray[random].correct_answer;
-  let incorrectAnswer = questionsArray[random].incorrect_answers;
+  let correctAnswer = selectedQuestion.correct_answer;
+  let incorrectAnswer = selectedQuestion.incorrect_answers;
   let totAnswer = [...incorrectAnswer, correctAnswer];
+
+  // Mescola le risposte
   totAnswer = totAnswer.sort(() => Math.random() - 0.5);
 
+  // Ripristina e aggiorna i bottoni
   for (let i = 0; i < answer.length; i++) {
-    let p = document.createElement("p");
-    p.textContent = totAnswer[i];
-    answer[i].textContent = "";
-    answer[i].appendChild(p);
-    main.appendChild(answer[i]);
 
-    // Riabilita i pulsanti per ogni nuova domanda
-    answer[i].disabled = false;
+    answer[i].style.display = "inline-block";
+
+    if (totAnswer[i]) {
+      let p = document.createElement("p");
+      p.textContent = totAnswer[i];
+      answer[i].textContent = "";
+      answer[i].appendChild(p);
+      answer[i].disabled = false; 
+
+    } else {
+      answer[i].style.display = "none";
+    }
+    main.appendChild(answer[i]);
   }
 }
 
@@ -231,10 +242,8 @@ function changeQuestionNumber() {
   }
 }
 
-
-
 // Timer con effetto countdown
-let totalTime = 10;
+let totalTime = 60;
 let currentTime = totalTime;
 let timeElement = document.querySelector("#timer");
 let circleElement = document.querySelector(".circle");
