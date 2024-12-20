@@ -1,8 +1,8 @@
 let answer = document.querySelectorAll(".answer");
 let footer = document.querySelector("footer");
 let timer;
-let userScore = 0; 
-let totalAnswers = 0; 
+let userScore = 0;
+let totalAnswers = 0;
 let selectedAnswer = "";
 
 const questions = [
@@ -101,7 +101,6 @@ const questions = [
   },
 ];
 
-
 // Controllo per evitare errori nella pagina 3
 if (document.querySelector("#questionTitle")) {
   random(questions);
@@ -133,18 +132,18 @@ function random(questionsArray) {
 // Gestione delle risposte e del bottone "Procedi"
 for (let i = 0; i < answer.length; i++) {
   answer[i].addEventListener("click", (event) => {
-    selectedAnswer = event.target.textContent; 
+    selectedAnswer = event.target.textContent;
 
     if (!footer.querySelector(".btnProceed")) {
       let proceedBtn = document.createElement("button");
-      proceedBtn.textContent = "Procedi";
+      proceedBtn.textContent = "Proceed";
       proceedBtn.classList.add("btnProceed");
       footer.appendChild(proceedBtn);
 
       proceedBtn.addEventListener("click", () => {
-        checkAnswer(); 
-        updatePercentage(); 
-        changeQuestionNumber(); 
+        checkAnswer();
+        updatePercentage();
+        changeQuestionNumber();
         proceedBtn.remove();
       });
     }
@@ -154,9 +153,11 @@ for (let i = 0; i < answer.length; i++) {
 // Funzione per verificare la risposta
 function checkAnswer() {
   const currentQuestion = document.querySelector("#questionTitle").textContent;
-  const correctAnswer = questions.find(q => q.question === currentQuestion).correct_answer;
+  const correctAnswer = questions.find(
+    (q) => q.question === currentQuestion
+  ).correct_answer;
 
-  totalAnswers++; 
+  totalAnswers++;
   if (selectedAnswer === correctAnswer) {
     userScore++;
   }
@@ -170,7 +171,7 @@ function updatePercentage() {
 
   localStorage.setItem("successPercentage", successPercentage);
   localStorage.setItem("errorPercentage", errorPercentage);
-  localStorage.setItem("correctAnswers", userScore); 
+  localStorage.setItem("correctAnswers", userScore);
   localStorage.setItem("totalAnswers", totalAnswers);
 }
 
@@ -181,12 +182,18 @@ function changeQuestionNumber() {
   number++;
   questionNumber.textContent = number;
 
-  if (number === 10) {
+  if (number === 11) {
+    let seeResult = document.createElement("button");
+    seeResult.textContent = "See Result";
+    footer.appendChild(seeResult);
+
+    let proceedBtn = document.querySelector(".btnProceed");
+    proceedBtn.remove();
     window.location.href = "../pg3/result.html";
   } else {
     random(questions);
     resetTimer();
-    selectedAnswer = ""; 
+    selectedAnswer = "";
   }
 }
 
@@ -203,7 +210,7 @@ function updateTimer() {
     circleElement.style.background = `conic-gradient(#00ffff ${angle}deg,rgba(255, 255, 255, 0.68) ${angle}deg)`;
     currentTime--;
   } else {
-    handleTimeout(); 
+    handleTimeout();
   }
 }
 
@@ -219,43 +226,49 @@ function resetTimer() {
 
 // Funzione per gestire il timeout
 function handleTimeout() {
-  totalAnswers++; 
-  updatePercentage(); 
+  totalAnswers++;
+  updatePercentage();
   changeQuestionNumber();
 }
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
-  
-    const successPercentage = localStorage.getItem("successPercentage") || "0";
-    const errorPercentage = localStorage.getItem("errorPercentage") || "0";
-    const totalAnswers = parseInt(localStorage.getItem("totalAnswers")) || 0;
-    const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
-    const incorrectAnswers = totalAnswers - correctAnswers;
-  
-  
-    const correctPercentageElement = document.querySelector(".boxResult:nth-child(1) h2:nth-of-type(2)");
-    const correctCountElement = document.querySelector(".boxResult:nth-child(1) p");
-    const wrongPercentageElement = document.querySelector(".boxResult:nth-child(3) h2:nth-of-type(2)");
-    const wrongCountElement = document.querySelector(".boxResult:nth-child(3) p");
-    const passMessageElement = document.querySelector(".azzuro");
-  
-  
-    if (correctPercentageElement && correctCountElement && wrongPercentageElement && wrongCountElement && passMessageElement) {
-      
-      correctPercentageElement.textContent = `${successPercentage}%`;
-      correctCountElement.textContent = `${correctAnswers}/${totalAnswers} questions`;
-  
-      wrongPercentageElement.textContent = `${errorPercentage}%`;
-      wrongCountElement.textContent = `${incorrectAnswers}/${totalAnswers} questions`;
-  
-  
-      if (parseFloat(successPercentage) >= 60) {
-        passMessageElement.textContent = "You passed the exam 🎉";
-      } else {
-        passMessageElement.textContent = "You did not pass the exam 😢";
-      }
+  const successPercentage = localStorage.getItem("successPercentage") || "0";
+  const errorPercentage = localStorage.getItem("errorPercentage") || "0";
+  const totalAnswers = parseInt(localStorage.getItem("totalAnswers")) || 0;
+  const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
+  const incorrectAnswers = totalAnswers - correctAnswers;
+
+  const correctPercentageElement = document.querySelector(
+    ".boxResult:nth-child(1) h2:nth-of-type(2)"
+  );
+  const correctCountElement = document.querySelector(
+    ".boxResult:nth-child(1) p"
+  );
+  const wrongPercentageElement = document.querySelector(
+    ".boxResult:nth-child(3) h2:nth-of-type(2)"
+  );
+  const wrongCountElement = document.querySelector(".boxResult:nth-child(3) p");
+  const passMessageElement = document.querySelector(".azzuro");
+  const congratulation = document.querySelector(".chartCenterContent p");
+  if (
+    correctPercentageElement &&
+    correctCountElement &&
+    wrongPercentageElement &&
+    wrongCountElement &&
+    passMessageElement
+  ) {
+    correctPercentageElement.textContent = `${successPercentage}%`;
+    correctCountElement.textContent = `${correctAnswers}/${totalAnswers} questions`;
+
+    wrongPercentageElement.textContent = `${errorPercentage}%`;
+    wrongCountElement.textContent = `${incorrectAnswers}/${totalAnswers} questions`;
+
+    if (parseFloat(successPercentage) >= 60) {
+      passMessageElement.textContent = "You passed the exam";
+    } else {
+      passMessageElement.textContent = "You did not pass the exam";
+      congratulation.textContent = "Sorry!";
+    }
   }
 });
 
@@ -273,14 +286,11 @@ document.addEventListener("DOMContentLoaded", () => {
     new Chart(ctx, {
       type: "doughnut",
       data: {
-        
         datasets: [
           {
-            
             data: [successPercentage, errorPercentage],
-            backgroundColor: ["#00FFFF", "#D20094"], 
+            backgroundColor: ["#00FFFF", "#D20094"],
             borderWidth: 0,
-            
           },
         ],
       },
@@ -288,8 +298,9 @@ document.addEventListener("DOMContentLoaded", () => {
         cutout: "70%",
       },
     });
-    
   } else {
-    console.log("Grafico Chart.js non caricato: questa pagina non necessita del grafico.");
+    console.log(
+      "Grafico Chart.js non caricato: questa pagina non necessita del grafico."
+    );
   }
 });

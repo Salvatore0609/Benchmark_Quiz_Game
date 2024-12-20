@@ -10,6 +10,10 @@ body{
     margin: auto;
 }
 
+header img{
+    display: block;
+    margin: 20px 0 20px 20px;
+}
 p {
     color: white;
     font-family: inter;
@@ -79,7 +83,12 @@ button {
 }
 
 button:hover{
-    background-color: red;
+    background-color: #00ffff;
+    color: black;
+    -webkit-box-shadow:0px 0px 27px 6px rgba(0,255,255,0.9);
+    -moz-box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+    box-shadow: 0px 0px 27px 6px rgba(0,255,255,0.9);
+
 }
 
 #chartContainer {
