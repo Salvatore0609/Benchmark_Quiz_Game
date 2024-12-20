@@ -205,6 +205,8 @@ function changeQuestionNumber() {
     selectedAnswer = "";
   }
 
+}
+
 // Timer con effetto countdown
 let totalTime = 60;
 let currentTime = totalTime;
