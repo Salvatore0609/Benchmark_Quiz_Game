@@ -262,6 +262,8 @@ function resetTimer() {
 function handleTimeout() {
   totalAnswers++; 
   updatePercentage(); 
+
+  const questionNumber = parseInt(document.querySelector("#questionNumber").textContent);
   if (questionNumber >= questions.length) {
     // Reindirizza alla pagina dei risultati
     window.location.href = "../pg3/result.html";
@@ -288,6 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wrongCountElement = document.querySelector(".boxResult:nth-child(3) p");
     const passMessageElement = document.querySelector(".azzuro");
     const sorryMessageElement = document.querySelector(".chartCenterContent p");
+    const noMessage = document.querySelector(".piccolino");
   
   
     if (correctPercentageElement && correctCountElement && wrongPercentageElement && wrongCountElement && passMessageElement) {
@@ -304,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         passMessageElement.textContent = "You did not pass the exam ";
         sorryMessageElement.textContent = "Sorry!";
+        noMessage.textContent = ""
       }
   }
 });
