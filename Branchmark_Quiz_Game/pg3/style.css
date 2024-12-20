@@ -95,7 +95,6 @@ button:hover{
 #chartContainer {
     position: relative; 
     display: inline-block;
-    transform: scale(-1,1);
     top: 3em;
 }
 
@@ -111,8 +110,6 @@ button:hover{
 .chartCenterContent p {
     margin: 0;
     font-weight: 500;
-    transform: scale(-1,1);
-
 }
 
 .chartCenterContent .azzuro {
